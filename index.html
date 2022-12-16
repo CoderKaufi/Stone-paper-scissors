@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone paper scissors</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice(){
+            num = Math.floor((Math.random() * 3) + 1) 
+            if(num === 1){
+                return "Rock";
+            }
+            else if(num === 2){
+                return "Paper";
+            }
+            else{
+                return "Scissors";
+            }
+        }
+
+        function playRound(playerSelection, ComputerSelection){
+            if(playerSelection === "Rock" && ComputerSelection === "Scissors"){
+                return true;
+            }
+            else if(playerSelection === "Scissors" && ComputerSelection === "Paper"){
+                return true;
+            }
+            else if(playerSelection === "Paper" && ComputerSelection === "Rock"){
+                return true;
+            }
+            else if(playerSelection === ComputerSelection){
+                return false;
+            }
+            else if(playerSelection === "Rock" && ComputerSelection === "Paper"){
+                return false;
+            }
+            else if(playerSelection === "Scissors" && ComputerSelection === "Rock"){
+                return false;
+            }
+            else if(playerSelection === "Paper" && ComputerSelection === "Scissors"){
+                return false;
+            }
+        }
+        
+        function game(){
+            let playerScore = 0;
+            let computerScore = 0;
+
+            for(let i = 0; i < 5; i++){
+                player = prompt("Enter Rock, Paper or Scissors: ", "Rock");
+                computer = getComputerChoice()
+
+                if(playRound(player, computer)){
+                    console.log("You win " + player + " beats " + computer);
+                    playerScore ++;
+                }
+                else if(playRound(player, computer) === false && player === computer){
+                    console.log(player + ", " + computer + " tie");
+                }
+                else{
+
+                    console.log("You lose " + computer + " beats " + player);
+                    computerScore ++;
+                }
+                if(i === 4){
+                    if(playerScore > computerScore){
+                        console.log(playerScore + ":" + computerScore + " for you. You won!")
+                    }
+                    else if(computerScore > playerScore){
+                        console.log(computerScore + ":" + playerScore + " for computer. You lost!")
+                    }
+                    else{
+                        console.log(playerScore + ":" + computerScore + " a tie!")
+                    }
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>
